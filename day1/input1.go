@@ -1,6 +1,6 @@
-package main
+package day1
 
-var day1_input []int = []int{
+var Input1 []int = []int{
 	1310,
 	1960,
 	1530,
