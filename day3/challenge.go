@@ -30,6 +30,8 @@ func countTrees(fileName string) int {
 
 func countTrees2(fileName string) int {
 	file, err := os.Open(fileName)
+	defer file.Close()
+
 	if err != nil {
 		return 0
 	}
