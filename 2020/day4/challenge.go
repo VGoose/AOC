@@ -2,7 +2,6 @@ package day4
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -24,14 +23,18 @@ func passportScanner(fileName string) int {
 		if t == "" {
 			// if not empty
 			// tally & reset
+			if len(codes) != 0 {
+				if len(codes) >= 7 {
+
+				}
+				codes = map[string]bool{}
+			}
 			continue
 		}
 		groups := strings.Split(t, " ")
 
 		for _, code := range groups {
 			codes[code[:3]] = true
-			fmt.Printf("%v", codes)
-			fmt.Print("\n")
 		}
 	}
 	return count
