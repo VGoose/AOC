@@ -2,6 +2,7 @@ package day1
 
 import (
 	"bufio"
+	"math"
 	"os"
 	"strconv"
 )
@@ -46,26 +47,30 @@ func SonarSweep2(fileName string) int {
 	}
 	defer f.Close()
 
-	// scanner := bufio.NewScanner(f)
-	// a, b, c := 0, 0, 0
-	// scanner.Scan()
-	// n, err := strconv.Atoi(scanner.Text())
+	scanner := bufio.NewScanner(f)
+	window := []int{}
+	prev := math.MaxInt32
+	count := 0
 
-	// if err != nil {
-	// 	return 0
-	// }
+	for scanner.Scan() {
+		n, err := strconv.Atoi(scanner.Text())
+		if err != nil {
+			return 0
+		}
 
-	// a = n
+		window = append(window, n)
 
-	// scanner.Scan()
-	// n, err = strconv.Atoi(scanner.Text())
+		if len(window) != 3 {
+			continue
+		}
 
-	// if err != nil {
-	// 	return 0
-	// }
+		sum := window[0] + window[1] + window[2]
+		if sum > prev {
+			count++
+		}
+		prev = sum
+		window = window[1:]
+	}
 
-	// a += n
-	// b = n
-
-	return 0
+	return count
 }
